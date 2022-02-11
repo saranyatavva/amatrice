@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/d3d6f2df1f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="navbar.css" type="text/css" />
+
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <title>Amartice</title>
+  </head>
+  <body>
+    <div>
+      <nav
+        class="navbar fixed-top border navbar-expand-lg navbar-$white bg-white"
+      >
+        <div class="container justify-content-center">
+          <div
+            class="d-flex flex-row justify-content-between align-items-center col-9"
+          >
+            <a class="navbar-brand" href="/allpost">
+              <img src="capture.jpg" alt="" width="100px" height="50px" />
+            </a>
+            <div></div>
+            <div class="d-flex flex-row">
+              <ul class="list-inline m-0">
+                <li class="list-inline-item">
+                  <a href="/allpost" class="link-menu">
+                    <svg
+                      width="1.5em"
+                      height="1.5em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-house-door-fill"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li class="list-inline-item ml-2">
+                  <a href="/hello" class="link-menu">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5em"
+                      height="1.5em"
+                      fill="currentColor"
+                      class="bi bi-messenger"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"
+                      />
+                    </svg>
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown list-inline-item align-middle">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href=""
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="<%= user.pic%>"
+                      width="28"
+                      height="28"
+                      class="rounded-circle"
+                    />
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <a class="dropdown-item" href="/mypost">My Profile</a>
+
+                    <a href=""><hr class="dropdown-divider" /></a>
+                    <a class="dropdown-item" href="/logout">Log Out</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <script>
+      let search = $("#livesearch");
+
+      function showResult(str) {
+        if (str.length === 0) {
+          search.addClass("hide");
+        } else {
+          search.removeClass("hide");
+        }
+
+        $.ajax({
+          url: "/search-users",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ search: str }),
+          success: function (result) {
+            search.html(result.response);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<%- include('./partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="myprofile.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <% if(message.length >0){%>
+                <div class="alert alert-info" role="alert"><%= message %></div>    
+                <% }%>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="<%= user.pic %>" alt="">
+                </div>
+                <div class="profile-user-settings">
+                    <h1 class="profile-user-name"><%=user.name%></h1>
+                    <button class="btn profile-edit-btn" data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form class="login-form" method="post" action="/edit">
+                                <div class="form-group">
+                                          <label for="formGroupExampleInput2">Profile picture</label>
+                                          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL here" name="photo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput">Bio</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Type here" name="bio">
+                                          </div>
+                                        <button type="submit" class="btn-primary">Submit</button>
+                                  </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-stats pt4">
+                    <div class="profile-bio">
+                  <p><div class="profile-real-name"><%= user.bio%></p>
+                </div>
+                </div> </div>
+        </div>
+        <style>
+            .sidenav-profile-photo {
+             width: 56px;
+             height: 56px;
+             position: relative;
+           }
+         </style>
+    </header> 
+    <main>
+        <div class="container">
+            <div class="gallery">
+                <% mypost.forEach(function(p){ %>
+                <div class="gallery-item">
+<a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ><img src="<%= p.photo %>" class="gallery-image" alt=""/></a>   
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+            </div>
+            </div>
+    </main> 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+</html>
